@@ -58,7 +58,7 @@
 
 	</head>
 	<body>
-		
+		@include('flashmessage')
 	<div class="colorlib-loader"></div>
 
 	<div id="page">

@@ -26,9 +26,9 @@ class Logincustomcontroller extends Controller
             {
             if($user->is_admin())
             {              
-                return redirect()->route('admindashboard');
+                return redirect()->route('admindashboard')->with('success','Login Success');
             }          
-                return redirect()->route('welcome');
+                return redirect()->route('welcome')->with('success','Login Success');
             
             }
             else
