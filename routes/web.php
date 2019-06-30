@@ -25,9 +25,9 @@ Route::get('/companyinfo', 'Companycontroller@index')->name('companyinfo');
 
 Route::get('/sidebar','Productcontroller@index')->name('sidebar');
 
-Route::get('/admin/dashboard', 'HomeController@index')->name('admindashboard');
 
-Route::resource('/admin/addcategoryy','Categorycontroller');
+
+
 
 Route::resource('/user/addproduct','Productcontroller');
 
@@ -49,9 +49,7 @@ Route::get('/Logincustom','Logincustomcontroller@index')->name('Logincustom');
 
 Route::resource('/requestd','Requestedcontroller');
 
-Route::resource('/admin/manageuser','Usermanagementcontroller');
 
-Route::resource('/admin/profileadmin','Adminprofilecontroller');
 
 Route::resource('/book','Bookbuycontroller');
 
@@ -59,7 +57,6 @@ Route::resource('/buy','Buycontroller');
 
 Route::resource('/review','ReviewController');
 
-Route::resource('/admin/transactionadmin','Totaltransactioncontroller');
 
 Route::get('/help','Helpcontroller@index')->name('help');
 
@@ -67,3 +64,11 @@ Route::get('/transaction','PrintController@index');
 Route::get('/prnpriview','PrintController@prnpriview');
 
 Route::resource('/bought','BoughtController');
+
+Route::group(array('prefix' => 'admin', 'before' => 'auth'),function(){
+    Route::resource('/transactionadmin','Totaltransactioncontroller');
+    Route::resource('/manageuser','Usermanagementcontroller');
+    Route::resource('/addcategoryy','Categorycontroller');
+    Route::resource('/profileadmin','Adminprofilecontroller');
+    Route::get('/dashboard', 'HomeController@index')->name('admindashboard');
+});

@@ -21,6 +21,7 @@
                 </thead>
                 <tbody>
                 @foreach ($user as $user)
+                @if(Auth::user()->id != $user->id)
             <tr>
                 <td>{{$user->id}}</td>
                 <td>{{$user->Firstname}}</td>
@@ -59,6 +60,7 @@
   </div>
                         </td>
             </tr>
+            @endif
             @endforeach
                 </tbody>
                 
