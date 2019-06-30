@@ -20,12 +20,12 @@ class UserTest extends TestCase
     {
         $user =  factory(App\User::class)->create(['email' => 'john@example.com', 'password' => bcrypt('testpass123')]);
 
-    $this->visit(route('login'));
+    $this->visit(route('Login.Custom'));
     $this->type($user->email, 'email');
     $this->type($user->password, 'password');
     $this->press('Login');
     $this->assertTrue(Auth::check());
-    $this->seePageIs(route('userdashboard'));
+    $this->seePageIs(route('user.userdashboard'));
 
     }
 }
