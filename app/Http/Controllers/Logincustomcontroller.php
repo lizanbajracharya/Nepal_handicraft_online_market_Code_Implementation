@@ -13,7 +13,7 @@ class Logincustomcontroller extends Controller
     use AuthenticatesUsers;
     public function login(Request $request){
         $this->validate($request, [
-            'email'           => 'required|max:255|email',
+            'email'           => 'required|max:255|email|exists:users',
             'password'        => 'required',
         ]);
         if(Auth::attempt([
@@ -34,7 +34,7 @@ class Logincustomcontroller extends Controller
             else
             dd("You are suspended for improper activity");          
             }          
-        return redirect()->back();
+        return redirect()->back()->withErrors(['Login Failed','Invalid Password']);
     }
     
     public function index()
