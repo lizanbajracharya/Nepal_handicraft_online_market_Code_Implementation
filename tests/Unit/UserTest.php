@@ -1,5 +1,6 @@
 <?php
 namespace Tests\Unit;
+
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -18,11 +19,9 @@ class UserTest extends TestCase
 
     public function logintest()
     {
-        $user =  factory(App\User::class)->create(['email' => 'john@example.com', 'password' => bcrypt('testpass123')]);
-
-    $this->visit(route('Login.Custom'));
-    $this->type($user->email, 'email');
-    $this->type($user->password, 'password');
+    $this->visit(route('login'));
+    $this->type('asd@asd.com', 'email');
+    $this->type('12345678', 'password');
     $this->press('Login');
     $this->assertTrue(Auth::check());
     $this->seePageIs(route('user.userdashboard'));

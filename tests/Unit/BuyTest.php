@@ -29,7 +29,7 @@ class BuyTest extends TestCase
              'Productid'=>'2',
              'Userid'=>'1',
          ];
-         $response = $this->json('POST', '/api/Payment',$data);
+         $response = $this->json('POST', '/App/Payment',$data);
              $response->assertStatus(200);
              $response->assertJson(['status' => true]);
              $response->assertJson(['message' => " Successful"]);

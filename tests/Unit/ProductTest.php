@@ -39,5 +39,5 @@ class ProductTest extends TestCase
             $response->assertJson(['data' => $data]);           
       }
 
-     
+      
 }
