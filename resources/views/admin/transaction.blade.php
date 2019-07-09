@@ -29,7 +29,7 @@
                 <td>{{$transaction->Contact}}</td>
                 <td>{{$transaction->Quantity}}</td>
                 <?php $user = App\User::findorFail($transaction->Userid)?> 
-                        <td>{{$user->Username}}</td>
+                        <td>{{$user->email}}</td>
                    </tr>
                                      
                     @endforeach   

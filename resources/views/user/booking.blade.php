@@ -12,7 +12,7 @@
         <th>Booking Date</th>
         <th>Quantity</th>
         <th>Buy</th>
-        <th>Delete</th>                                                                     
+        <th>Cancel Booking</th>                                                                     
     </tr>
 </thead>
 <tbody>
@@ -27,22 +27,22 @@
         <a class="btn btn-primary" href="{{route('book.show',['id'=>$transaction->id],['pid'=>$product->id])}}">Buy</a>
         </td>           
         <td>
-        <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+        <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Cancel</button>
             <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Deleting the data??</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Cancel Booking??</h5>
         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
             </button>
         </div>
         <div class="modal-body">Are u sure?</div>
             <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
         <button class="btn btn-primary" href="{{ route('book.destroy',['id'=>$transaction->id])}}"
             onclick="event.preventDefault();
-                document.getElementById('delete-form').submit();">Delete</button>
+                document.getElementById('delete-form').submit();">Cancel Book</button>
 
             <form id="delete-form" action="{{ route('book.destroy',['id'=>$transaction->id])}}" method="POST" style="display: none;">
         {{ csrf_field() }}

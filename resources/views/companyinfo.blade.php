@@ -181,7 +181,7 @@
 							</ul>
 						</p>
 					</div>
-					<div class="col-md-2 colorlib-widget">
+					<div class="col-md-3 colorlib-widget">
 						<h4>Quick Link</h4>
 						<p>
 							<ul class="colorlib-footer-links">

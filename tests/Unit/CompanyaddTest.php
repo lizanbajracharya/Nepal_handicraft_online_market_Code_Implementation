@@ -17,6 +17,7 @@ class CompanyaddTest extends TestCase
     {
         $this->assertTrue(true);
     }
+    
     public function buytest()
     {
         $data = [
