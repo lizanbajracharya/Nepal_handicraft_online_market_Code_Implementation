@@ -132,7 +132,7 @@
               <img class="card-img-top img-fluid" src="{{asset($product->Productimage)}}" alt="{{$product->Productname}}" style="width: 100%; height: 100%; object-fit: cover;">								
 							</div>
 							<div class="desc">
-								<h3><a href="shop.html">Product Name : {{$product->Productname}}</a></h3>
+								<h3><a href="#">Product Name : {{$product->Productname}}</a></h3>
 								<p class="price"><span>${{$product->Price}}</span></p>
 								<a href="{{route('addproduct.show',['id'=>$product->id])}}" class="btn btn-success text-white" role="button">Find More</a>
 							</div>

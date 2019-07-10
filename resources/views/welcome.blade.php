@@ -207,7 +207,7 @@
 								
 							</div>
 							<div class="desc">
-								<h3><a href="shop.html">Product Name : {{$products->Productname}}</a></h3>
+								<h3><a href="#">Product Name : {{$products->Productname}}</a></h3>
 								<p class="price"><span>${{$products->Price}}</span></p>
 								<a href="{{route('addproduct.show',['id'=>$product->id])}}" class="btn btn-success text-white" role="button">Find More</a>
 							</div>

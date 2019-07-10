@@ -34,7 +34,11 @@
                                      
                     @endforeach   
                 </tbody>
-                
+                <link rel="stylesheet" type="text/css" href="{{asset('css/datatable.min.css')}}"/>
+                <script type="text/javascript" src="{{asset('js/datatable.min.js')}}"></script>
+                <script>
+                    $(".table").DataTable();
+                </script>
             </table>
         </div>
     </div>
