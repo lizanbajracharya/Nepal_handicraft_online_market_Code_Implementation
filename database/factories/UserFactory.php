@@ -20,9 +20,9 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'Firstname' => $faker->Firstname,
         'Lastname' => $faker->Lastname,
-        'Address' => 'lalitpur',
+        'Address' => $faker->Address,
         'Username' =>$faker->Firstname,
-        'Usertype' => 'User',
+        'Usertype' => $faker->Usertype,
         'Status' => 'Active',
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),

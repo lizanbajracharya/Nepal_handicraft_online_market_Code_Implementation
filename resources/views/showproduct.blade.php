@@ -142,7 +142,7 @@
 							<form method="POST" action="{{route('review.store')}}"  enctype="multipart/form-data">
 							@csrf											   
 							<div class="col-md-10">											   
-								<textarea type="text" cols="100" name="review" placeholder="Write ur review"></textarea></div>
+								<textarea type="text" cols="100" name="review" placeholder="Write ur review" required></textarea></div>
 								<div class="col-md-2">
 								<button class="btn btn-primary" value="{{$product->id}}" name="upload"><i class="fa fa-paper-plane"></i></button>
 							</div></form>

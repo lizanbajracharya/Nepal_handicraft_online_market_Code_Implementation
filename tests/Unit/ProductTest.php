@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Product;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -19,9 +20,10 @@ class ProductTest extends TestCase
     {
         $this->assertTrue(true);
     }
-
+    
     public function Createproduct()
     {
+        $this->withoutExceptionHandling();
         $data = [
            'Productname'=>'wood',
             'Productdetail'=>'asdasdasd',
@@ -32,11 +34,18 @@ class ProductTest extends TestCase
             'Categoryid'=>'2',
             'Userid'=>'1',
         ];
-        $response = $this->json('POST', '/api/Product',$data);
-            $response->assertStatus(200);
-            $response->assertJson(['status' => true]);
-            $response->assertJson(['message' => "Product Created!"]);
-            $response->assertJson(['data' => $data]);           
+        $product = Product::create($data);
+        $this->assertInstanceOf(Product::class, $product);
+        $this->assertEquals($data['Productname'], $product->Productname);
+        $this->assertEquals($data['Productdetail'], $product->Productdetail);
+        $this->assertEquals($data['Quantity'], $product->Quantity);
+        $this->assertEquals($data['Price'], $product->Price);
+        $this->assertEquals($data['Productimage'], $product->Productimage);        
+        $this->assertEquals($data['Status'], $product->Status);       
+        $this->assertEquals($data['Categoryid'], $product->Categoryid);        
+        $this->assertEquals($data['Userid'], $product->Userid);        
+        $this->assertTrue(true);
+               
       }
 
       

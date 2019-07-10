@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserRegisterTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic unit test example.
      *
@@ -19,9 +20,7 @@ class UserRegisterTest extends TestCase
     }
 
     public function CreateUser()
-    {
-       
-            $user = factory(\App\User::class)->create();
-           
-      }
+    {      
+            $user = factory(\App\User::class)->create();           
+    }
 }
