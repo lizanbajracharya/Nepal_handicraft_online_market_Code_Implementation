@@ -23,12 +23,6 @@ Route::get('/category', 'Categoryviewcontroller@index')->name('category');
 
 Route::get('/companyinfo', 'Companycontroller@index')->name('companyinfo');
 
-Route::get('/sidebar','Productcontroller@index')->name('sidebar');
-
-
-
-
-
 Route::resource('/user/addproduct','Productcontroller');
 
 Route::get('/admin/adminregister','Adminregistercontroller@index')->name('adminregister');
@@ -49,18 +43,16 @@ Route::get('/Logincustom','Logincustomcontroller@index')->name('Logincustom');
 
 Route::resource('/requestd','Requestedcontroller');
 
-
-
 Route::resource('/book','Bookbuycontroller');
 
 Route::resource('/buy','Buycontroller');
 
 Route::resource('/review','ReviewController');
 
-
 Route::get('/help','Helpcontroller@index')->name('help');
 
 Route::get('/transaction','PrintController@index');
+
 Route::get('/prnpriview','PrintController@prnpriview');
 
 Route::resource('/bought','BoughtController');

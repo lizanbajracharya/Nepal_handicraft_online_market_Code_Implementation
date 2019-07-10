@@ -1,15 +1,22 @@
 @extends('user.sidebaruser')
 
+<style type="text/css" media="print">
+    body{
+        visibility: hidden;
+    }
+    #bill{
+        margin-top:10%;
+        margin-right:30%;
+        visibility: visible;
+    }
+</style>
 @section('content')
 
 <div class="container">
+
+<a class="btn btn-outline-success offset-5" onclick="window.print();return false;" id="print"><i class="fa fa-print"></i>Print </a>
+<div id="bill">
 <div class="row">
-<a href="{{ route('transaction.show',['id'=>$transaction->id])}}" class="btnprn btn">Print Preview</a>
-<script type="text/javascript">
-$(document).ready(function(){
-$('.btnprn').printPage();
-});
-</script>
     <div class="col-md-8 offset-3">
     <h1 class="text-center">Nepal Handicraft Online Market</h1>
     <h1 class="text-center">Bill</h1>
@@ -64,6 +71,7 @@ $('.btnprn').printPage();
             </div>
         </div>
                          
+    </div>
     </div>
 </div>
 </div>
