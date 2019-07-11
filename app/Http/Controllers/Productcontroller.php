@@ -28,8 +28,7 @@ class Productcontroller extends Controller
     {
         $product = Product::all();
         $category = Category::get();
-        $users = User::all();
-        
+        $users = User::all();        
         return view('user.product')->with('product',$product)
                                     ->with('user',$users)
                                     ->with('category',$category);
@@ -80,10 +79,7 @@ class Productcontroller extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
-        $review = Review::all();
-        return view('showproduct')->with('product',$product)
-                                    ->with('review',$review);
+       
     }
 
     /**

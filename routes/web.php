@@ -21,6 +21,7 @@ Route::get('/welcome', 'Welcomecontroller@index')->name('welcome');
 
 Route::get('/category', 'Categoryviewcontroller@index')->name('category');
 
+Route::resource('/productdisplay','Categoryviewcontroller');
 Route::get('/companyinfo', 'Companycontroller@index')->name('companyinfo');
 
 Route::resource('/user/addproduct','Productcontroller');

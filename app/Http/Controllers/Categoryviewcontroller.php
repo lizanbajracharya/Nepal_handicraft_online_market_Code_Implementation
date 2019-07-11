@@ -6,6 +6,7 @@ use App\Booking;
 use App\Payment;
 use App\Category;
 use App\Product;
+use App\Review;
 use Illuminate\Http\Request;
 
 class Categoryviewcontroller extends Controller
@@ -56,7 +57,10 @@ class Categoryviewcontroller extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        $review = Review::all();
+        return view('showproduct')->with('product',$product)
+                                    ->with('review',$review);
     }
 
     /**

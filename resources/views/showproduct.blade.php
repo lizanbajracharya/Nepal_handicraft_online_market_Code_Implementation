@@ -73,7 +73,7 @@
 						</div>
 						<div class="col-xs-15 text-right menu-1">
 							<ul>
-								<li class="active"><a href="{{route('welcome')}}">Home</a></li>
+								<li><a href="{{route('welcome')}}">Home</a></li>
 								<li>
 									<a href="{{route('category')}}">Product</a>									
 								</li>

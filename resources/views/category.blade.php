@@ -134,7 +134,7 @@
 							<div class="desc">
 								<h3><a href="#">Product Name : {{$product->Productname}}</a></h3>
 								<p class="price"><span>${{$product->Price}}</span></p>
-								<a href="{{route('addproduct.show',['id'=>$product->id])}}" class="btn btn-success text-white" role="button">Find More</a>
+								<a href="{{route('productdisplay.show',['id'=>$product->id])}}" class="btn btn-success text-white" role="button">Find More</a>
 							</div>
 						</div>
 					</div>
