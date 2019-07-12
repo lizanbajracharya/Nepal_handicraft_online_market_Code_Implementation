@@ -17,7 +17,8 @@
   <!-- <script src="https://kit.fontawesome.com/5b14d241b3.js%22%3E"></script> -->
   <!-- Custom styles for this template-->
   <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
+  <script type="text/javascript" src="{{asset('assets/bootstrap/js/bootstrap.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('assets/js/jquery-2.2.4.min.js')}}"></script>
 </head>
 
 <body id="page-top">
@@ -40,7 +41,7 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="{{route('admindashboard')}}">
         <i class="fa fa-tachometer"></i>
           <span>Dashboard</span></a>

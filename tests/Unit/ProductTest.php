@@ -3,14 +3,17 @@
 namespace Tests\Unit;
 
 use App\Product;
+use App\Category;
+use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
-
+use Illuminate\Support\Facades\Session;
     
 class ProductTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic unit test example.
      *
@@ -21,31 +24,36 @@ class ProductTest extends TestCase
         $this->assertTrue(true);
     }
     
-    public function Createproduct()
+    /**test */
+    public function testCreateproduct()
     {
+        Session::start();
         $this->withoutExceptionHandling();
-        $data = [
-           'Productname'=>'wood',
-            'Productdetail'=>'asdasdasd',
+        $this->actingAs(factory(User::class)->create(
+            [
+                'id'=>2
+            ]
+        ));
+        $user=User::first();
+        factory(Category::class)->create();
+        $category = Category::first();
+
+        factory(Product::class)->create([
+            'Categoryid'=>$category->id,
+            'Userid' => $user->id
+        ]);
+        $product = Product::first();
+        $response = $this->post('user/addproduct',[
+            'Productname'=> $product->Productname,
+            'Productdetail'=> $product->Productdetail,
             'Quantity'=>'20',
-            'Price'=>'2000',
-            'Productimage'=>"Uploads/product/1561830182sky.jpg",
-            'Status'=>'Available',
-            'Categoryid'=>'2',
-            'Userid'=>'1',
-        ];
-        $product = Product::create($data);
-        $this->assertInstanceOf(Product::class, $product);
-        $this->assertEquals($data['Productname'], $product->Productname);
-        $this->assertEquals($data['Productdetail'], $product->Productdetail);
-        $this->assertEquals($data['Quantity'], $product->Quantity);
-        $this->assertEquals($data['Price'], $product->Price);
-        $this->assertEquals($data['Productimage'], $product->Productimage);        
-        $this->assertEquals($data['Status'], $product->Status);       
-        $this->assertEquals($data['Categoryid'], $product->Categoryid);        
-        $this->assertEquals($data['Userid'], $product->Userid);        
-        $this->assertTrue(true);
-               
+            'Price'=>$product->Price,
+            'Status'=>$product->Status,
+            'Categoryid'=>$product->Categoryid,
+            'Userid' => $product->Userid,
+        ]);
+
+        $this->assertCount(1,Product::all());
       }
 
       

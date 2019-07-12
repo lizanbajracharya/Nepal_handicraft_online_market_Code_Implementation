@@ -3,11 +3,17 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
+use App\Payment;
+use App\User;
+use App\Product;
+use App\Category;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Session;
 
 class BuyTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic unit test example.
      *
@@ -18,22 +24,40 @@ class BuyTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function buytest()
+    /**@test */
+    public function testbuytest()
     {
-        $data = [
+        Session::start();
+        $this->withoutExceptionHandling();
+        $this->actingAs(factory(User::class)->create());
+        $user=User::first();
+        factory(Category::class)->create();
+        $category = Category::first();
+        factory(Product::class)->create();
+        $product = Product::first([
+            'Categoryid'->$category->id,
+            'Userid'->$user->id,
+        ]);
+        $response = $this->post('/buy',[
             'Paymentway'=>'Esewa',
              'Contact'=>'asdasd',
-             'Quantity'=>'1',
+             'Quantity'=>1,
              'Price'=>'2000',
              'Location'=>'asdasd',             
-             'Productid'=>'2',
-             'Userid'=>'1',
-         ];
-         $response = $this->json('POST', '/App/Payment',$data);
-             $response->assertStatus(200);
-             $response->assertJson(['status' => true]);
-             $response->assertJson(['message' => " Successful"]);
-             $response->assertJson(['data' => $data]);           
+             'Productid'=>$product->id,
+             'Userid'=>$user->id,
+        ]);
+        $this->assertCount(1,Payment::all());          
        }
- 
+       
+       /**@test */
+       public function testadd_category()
+       {
+        factory(Category::class)->create();
+        $category= Category::first();
+        $response=$this->post('admin/addcategoryy',[
+            'Categoryname'=>$category->Categoryname
+        ]);
+        $this->assertCount(1,Category::all());
+       }
     }

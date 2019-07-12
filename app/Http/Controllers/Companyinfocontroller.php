@@ -48,6 +48,10 @@ class Companyinfocontroller extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'Companyname' => 'required',
+        ]);
+
         $company = new Company();
         $company->Companyname = $request->companyname; 
         $company->Companyinfo = $request->companyinfo; 

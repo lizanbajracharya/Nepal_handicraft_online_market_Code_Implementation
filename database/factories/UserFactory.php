@@ -22,7 +22,7 @@ $factory->define(User::class, function (Faker $faker) {
         'Lastname' => $faker->Lastname,
         'Address' => $faker->Address,
         'Username' =>$faker->Firstname,
-        'Usertype' => $faker->Usertype,
+        'Usertype' => 'User',
         'Status' => 'Active',
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),

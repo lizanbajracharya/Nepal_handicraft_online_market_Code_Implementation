@@ -16,4 +16,11 @@ class ExampleTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
+    /**test */
+    public function testhelp_page_login()
+    {
+        $response=$this->get('/help');
+        $response->assertstatus(200);
+    }
 }
