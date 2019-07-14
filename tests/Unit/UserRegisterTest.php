@@ -27,4 +27,22 @@ class UserRegisterTest extends TestCase
         $this ->actingAs(factory(User::class)->create());
         $response = $this->get('user/dashboard')->assertOk();           
     }
+
+    /**@test */
+    public function testto_create_user()
+    {
+        factory(User::class)->create();
+        $user=User::first();
+        $response= $this->post('/register',[
+            'Firstname' =>$user->Firstname,
+            'Lastname' =>$user->Lastname,
+            'Address' =>$user->Address,
+            'Username' =>$user->Username,
+            'Usertype' =>$user->Usertype,
+            'Status' =>$user->Status,
+            'password'=>$user->password,
+            'email'=>$user->email
+        ]);
+        $this->assertCount(1,User::all());   
+    }
 }
