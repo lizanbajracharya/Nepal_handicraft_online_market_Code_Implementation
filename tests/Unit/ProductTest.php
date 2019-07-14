@@ -29,19 +29,11 @@ class ProductTest extends TestCase
     {
         Session::start();
         $this->withoutExceptionHandling();
-        $this->actingAs(factory(User::class)->create(
-            [
-                'id'=>2
-            ]
-        ));
+        $this->actingAs(factory(User::class)->create(['id'=>2]));
         $user=User::first();
         factory(Category::class)->create();
         $category = Category::first();
-
-        factory(Product::class)->create([
-            'Categoryid'=>$category->id,
-            'Userid' => $user->id
-        ]);
+        factory(Product::class)->create(['Categoryid'=>$category->id,'Userid' => $user->id]);
         $product = Product::first();
         $response = $this->post('user/addproduct',[
             'Productname'=> $product->Productname,
@@ -52,7 +44,6 @@ class ProductTest extends TestCase
             'Categoryid'=>$product->Categoryid,
             'Userid' => $product->Userid,
         ]);
-
         $this->assertCount(1,Product::all());
       }
 

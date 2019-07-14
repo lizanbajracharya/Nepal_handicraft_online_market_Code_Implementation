@@ -21,7 +21,7 @@ class UserRegisterTest extends TestCase
     }
 
     /**test */
-    public function testCreateUser()
+    public function test_Login_test()
     {      
         $this->withoutExceptionHandling();
         $this ->actingAs(factory(User::class)->create());

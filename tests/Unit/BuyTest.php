@@ -34,10 +34,7 @@ class BuyTest extends TestCase
         factory(Category::class)->create();
         $category = Category::first();
         factory(Product::class)->create();
-        $product = Product::first([
-            'Categoryid'->$category->id,
-            'Userid'->$user->id,
-        ]);
+        $product = Product::first(['Categoryid'->$category->id,'Userid'->$user->id]);
         $response = $this->post('/buy',[
             'Paymentway'=>'Esewa',
              'Contact'=>'asdasd',

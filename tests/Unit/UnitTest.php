@@ -2,6 +2,10 @@
 
 namespace Tests\Unit;
 
+use App\User;
+use App\Category;
+use App\Product;
+use App\Booking;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -17,19 +21,23 @@ class UnitTest extends TestCase
     {
         $this->assertTrue(true);
     }
-
-    public function Bookingtest()
+    /**@test */
+    public function testBookingtest()
     {
-        $data = [
-             'Quantity'=>'1',
-             'Price'=>'2000',           
-             'Productid'=>'2',
-             'Userid'=>'1',
-         ];
-         $response = $this->json('POST', '/api/Booking',$data);
-             $response->assertStatus(200);
-             $response->assertJson(['status' => true]);
-             $response->assertJson(['message' => " Successful"]);
-             $response->assertJson(['data' => $data]);           
+        Session::start();
+        $this->withoutExceptionHandling();
+        $this->actingAs(factory(User::class)->create());
+        $user=User::first();
+        factory(Category::class)->create();
+        $category = Category::first();
+        factory(Product::class)->create();
+        $product = Product::first(['Categoryid'->$category->id,'Userid'->$user->id]);
+        $response = $this->post('/book',[
+             'Quantity'=>1,
+             'Price'=>'2000',
+             'Productid'=>$product->id,
+             'Userid'=>$user->id,
+        ]);
+        $this->assertCount(1,Booking::all());               
        }
 }
