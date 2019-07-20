@@ -19,7 +19,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/welcome', 'Welcomecontroller@index')->name('welcome');
 
-Route::get('/category', 'Categoryviewcontroller@index')->name('category');
+Route::resource('/category', 'Categoryviewcontroller');
 
 Route::resource('/productdisplay','Categoryviewcontroller');
 Route::get('/companyinfo', 'Companycontroller@index')->name('companyinfo');
@@ -65,3 +65,5 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'),function(){
     Route::resource('/profileadmin','Adminprofilecontroller');
     Route::get('/dashboard', 'HomeController@index')->name('admindashboard');
 });
+
+Route::get('/category/{id}','Categoryviewcontroller@index')->name('category');

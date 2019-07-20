@@ -16,16 +16,19 @@ class Categoryviewcontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $product = Product::all();
-        $category= Category::all();     
+        $allproduct = Product::all();
+        $categories= Category::all();     
         $booking= Booking::all();
         $payment=Payment::all();  
-        return view('category')->with('product',$product)
-                               ->with('category',$category)
-                               ->with('booking',$booking)
-                               ->with('payment',$payment);  
+
+        if(!empty($request->category)){
+           $product=Product::where('Categoryid','=',$request->category)->get();
+        }
+
+        return view('category',compact('product','allproduct','categories','booking','payment'));
     }
 
     /**

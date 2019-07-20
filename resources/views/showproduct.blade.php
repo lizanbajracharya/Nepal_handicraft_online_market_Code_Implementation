@@ -75,7 +75,7 @@
 							<ul>
 								<li><a href="{{route('welcome')}}">Home</a></li>
 								<li>
-									<a href="{{route('category')}}">Product</a>									
+									<a href="{{route('category.index')}}">Product</a>									
 								</li>
 								<li><a href="{{route('companyinfo')}}"">Company Info</a></li>
 								<li ><a href="{{route('help')}}"">Help</a></li>
@@ -97,35 +97,39 @@
 					</div>
 				</div>
 			</div>
-		</nav>            
+		</nav>     
+		
+<div class="colorlib-shop">       
 			<div class="container">                    
 		<img class="card-img-top img-fluid" src="{{asset($product->Productimage)}}" alt="{{$product->Productname}}" style="width: 70%; height: 70%; object-fit: absolute;">							
-		<div class="desc">
-			<h3>Product Name : {{$product->Productname}}</h3>
-			<p class="price"><span><b>Product Price</b>: ${{$product->Price}}</span></p>
-			<p class="price"><span><b>Product Detail</b>: {{$product->Productdetail}}</span></p>
-			<p class="price"><span><?php $category = App\Category::findorFail($product->Categoryid)?> 
-				<b>Category Type</b>: {{$category->Categoryname}} </span></p>
-		</div>
-		@guest
-		<button class="btn btn-primary" type="submit" disabled>Book Now</button>
-		<button class="btn btn-primary" type="submit" disabled>Buy Now</button>
-		Please Login to access the button <a href="{{route('Logincustom')}}" class="btn btn-primary">Login</a>
-		@else													
-		<a class="btn btn-primary" href="{{route('book.edit',['id'=>$product->id])}}">Book Now</a>												
-		<a class="btn btn-primary" href="{{route('buy.edit',['id'=>$product->id])}}">Buy Now</a>					
-		@endif
 		<div class="row">
 <div class="col-md-10 col-md-offset-1">
 	<div class="row">
 		<div class="col-md-12 tabulation">
 			<ul class="nav nav-tabs">
 				
-				<li class="active"><a data-toggle="tab" href="#review">Reviews</a>
+				<li class="active"><a data-toggle="tab" href="#description">Description</a></li>
+				<li><a data-toggle="tab" href="#review">Reviews</a>
 				</li>
-			</ul>								
+			</ul>	
 			<div class="tab-content">
-				<div id="review" class="tab-pane fade in active">
+		<div id="description" class="tab-pane fade in active">
+			<h3>Product Name : {{$product->Productname}}</h3>
+			<p class="price"><span><b>Product Price</b>: ${{$product->Price}}</span></p>
+			<p class="price"><span><b>Product Detail</b>: {{$product->Productdetail}}</span></p>
+			<p class="price"><span><?php $category = App\Category::findorFail($product->Categoryid)?> 
+				<b>Category Type</b>: {{$category->Categoryname}} </span></p>
+				@guest
+			<button class="btn btn-primary" type="submit" disabled>Book Now</button>
+			<button class="btn btn-primary" type="submit" disabled>Buy Now</button>
+			Please Login to access the button <a href="{{route('Logincustom')}}" class="btn btn-primary">Login</a>
+			@else													
+			<a class="btn btn-primary" href="{{route('book.edit',['id'=>$product->id])}}">Book Now</a>												
+			<a class="btn btn-primary" href="{{route('buy.edit',['id'=>$product->id])}}">Buy Now</a>					
+		@endif
+
+		</div>							
+				<div id="review" class="tab-pane fade">
 				<div class="row">
 					
 					<div class="col-md-12">
@@ -171,6 +175,7 @@
 		</div>
 	</div>
 </div>
+</div>
 	<hr style="height:1px; border:none; color:#000; background-color:#000; width:60%; text-align:center; margin: 0 auto;">		
 	<footer id="colorlib-footer" role="contentinfo">
 	<div class="container">
@@ -192,7 +197,7 @@
 			<p>
 				<ul class="colorlib-footer-links">
 					<li><a href="{{route('welcome')}}">Home</a></li>
-					<li><a href="{{route('category')}}">Product</a></li>
+					<li><a href="{{route('category.index')}}">Product</a></li>
 					<li><a href="{{route('companyinfo')}}">Company Info</a></li>
 					<li ><a href="{{route('help')}}"">Help</a></li>
 	@if (Auth::guest())

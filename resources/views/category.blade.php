@@ -74,7 +74,7 @@
 							<ul>
 								<li><a href="{{route('welcome')}}">Home</a></li>
 								<li class="active">
-									<a href="{{route('category')}}">Product</a>									
+									<a href="{{route('category.index')}}">Product</a>									
 								</li>
 								<li ><a href="{{route('companyinfo')}}"">Company Info</a></li>
 								<li ><a href="{{route('help')}}"">Help</a></li>
@@ -122,35 +122,70 @@
 					<div class="col-md-6 col-md-offset-3 text-center colorlib-heading">
 						<h2><span>Listed Product</span></h2>
 					</div>
-				</div>				
-        @if(count($product)>0)		
+				</div>	
+				<div class="row">
+					<div class="col-md-10 col-md-push-2">
+						<div class="row row-pb-lg">
+						@if(count($product)>0)
             @foreach($product as $product)			
 			@if($product->Status == 'Available' && $product->Quantity>0)
-					<div class="col-md-4 text-center">
-						<div class="product-entry">
-							<div class="product-img">
-              <img class="card-img-top img-fluid" src="{{asset($product->Productimage)}}" alt="{{$product->Productname}}" style="width: 100%; height: 100%; object-fit: cover;">								
-							</div>
+							<div class="col-md-4 text-center">
+								<div class="product-entry">
+									<div class="product-img" style="background-image:url( {{asset($product->Productimage)}});">
+										<div class="cart">
+											<p>
+												 
+												<span><a href="{{route('productdisplay.show',['id'=>$product->id])}}"><i class="icon-eye"></i></a></span> 
+												</p>
+										</div>
+									</div>	
+       
 							<div class="desc">
-								<h3><a href="#">Product Name : {{$product->Productname}}</a></h3>
-								<p class="price"><span>${{$product->Price}}</span></p>
-								<a href="{{route('productdisplay.show',['id'=>$product->id])}}" class="btn btn-success text-white" role="button">Find More</a>
+								<h3><a href="{{route('productdisplay.show',['id'=>$product->id])}}">Product Name : {{$product->Productname}}</a></h3>
+								<p class="price"><span>${{$product->Price}}</span></p>								
 							</div>
 						</div>
-					</div>
-					
+					</div>					
 					@else
 						<p>No Product found</p>
 					@endif
 					
           @endforeach
-        @else
-            <p>No product found</p>
-       
-		@endif
+		  @else
+						<p>No Product found</p>
+					@endif
 				</div>
+			</div>			
+		<div class="col-md-2 col-md-pull-10">
+			<div class="sidebar">
+				<div class="side">
+			<h2>Categories</h2>
+			<form method="GET" action="category">
+			@foreach($categories as $category)
+			<div class="fancy-collapse-panel">
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+				<div class="panel panel-default">
+					<div class="panel-heading" role="tab" id="headingOne">
+						<h4 class="panel-title">
+						<input type="radio" name="category[]" value="{{$category->id}}" <?php if(isset($_GET['category']) && in_array($category->id,$_GET['category'])) {echo "checked='checked'";}?>>
+							{{$category->where('id',$category->id)->pluck('Categoryname')->first()}}
+							[{{$allproduct->where('Categoryid',$category->id)->count('id')}}]
+						</h4>
+					</div>
+				</div>
+			</div>			
+			</div>
+			@endforeach
+			<button class="btn btn-success" type="submit">Filter</button>
+			</form>
+			</div>
+			</div>
+			
 			</div>
 		</div>
+		</div>
+		</div>
+		
 		
     <hr style="height:1px; border:none; color:#000; background-color:#000; width:60%; text-align:center; margin: 0 auto;">	
 <div id="colorlib-subscribe">
@@ -199,7 +234,7 @@
 						<p>
 							<ul class="colorlib-footer-links">
 								<li><a href="{{route('welcome')}}">Home</a></li>
-								<li><a href="{{route('category')}}">Product</a></li>
+								<li><a href="{{route('category.index')}}">Product</a></li>
 								<li><a href="{{route('companyinfo')}}">Company Info</a></li>
 								<li ><a href="{{route('help')}}"">Help</a></li>
 								@if (Auth::guest())

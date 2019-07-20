@@ -13,6 +13,7 @@
 
   <!-- Custom fonts for this template-->
   <link href="{{ asset('assets/css/all.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('assets/css/custom-style.css') }}" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://kit.fontawesome.com/5b14d241b3.js%22%3E"></script>
   <!-- Custom styles for this template-->

@@ -75,7 +75,7 @@
 							<ul>
 								<li class="active"><a href="{{route('welcome')}}">Home</a></li>
 								<li>
-									<a href="{{route('category')}}">Product</a>									
+									<a href="{{route('category.index')}}">Product</a>									
 								</li>
 								<li><a href="{{route('companyinfo')}}"">Company Info</a></li>
 								<li ><a href="{{route('help')}}"">Help</a></li>
@@ -161,30 +161,39 @@
 						<p>Latest Handicraft goods added</p>
 					</div>
 				</div>
-        @if(count($product)>0)
-            @foreach($product as $product)
-			@if($product->Status == 'Available' && $product->Quantity > 0)
-					<div class="col-md-4 text-center">
-						<div class="product-entry">
-							<div class="product-img">
-              <img class="card-img-top img-fluid" src="{{asset($product->Productimage)}}" alt="{{$product->Productname}}" style="width: 100%; height: 100%; object-fit: cover;">
-								
-							</div>
+        @if(count($product)>0)		
+            @foreach($product as $product)			
+			@if($product->Status == 'Available' && $product->Quantity>0)
+							<div class="col-md-4 text-center">
+								<div class="product-entry">
+									<div class="product-img" style="background-image:url( {{asset($product->Productimage)}});">
+										<div class="cart">
+											<p>
+												
+												<span><a href="{{route('productdisplay.show',['id'=>$product->id])}}"><i class="icon-eye"></i></a></span> 
+												
+											</p>
+										</div>
+									</div>	
+       
 							<div class="desc">
-								<h3><a href="">Product Name : {{$product->Productname}}</a></h3>
+								<h3><a href="{{route('productdisplay.show',['id'=>$product->id])}}">Product Name : {{$product->Productname}}</a></h3>
 								<p class="price"><span>${{$product->Price}}</span></p>
-								<a href="{{route('productdisplay.show',['id'=>$product->id])}}" class="btn btn-success text-white" role="button">Find More</a>
-							</div>
+								</div>
 						</div>
 					</div>
+					
 					@else
 						<p>No Product found</p>
 					@endif
+					
           @endforeach
         @else
             <p>No product found</p>
-        @endif
+       
+		@endif
 				</div>
+
 			</div>
 		</div>
 		
@@ -197,30 +206,39 @@
 						<p>The various product listed as per their category type and price.</p>
 					</div>
 				</div>
-				@if(count($products)>0)
-            @foreach($products as $products)
-			@if($product->Status == 'Available' && $products->Quantity > 0)
-					<div class="col-md-4 text-center">
-						<div class="product-entry">
-							<div class="product-img">
-              <img class="card-img-top img-fluid" src="{{asset($products->Productimage)}}" alt="{{$products->Productname}}" style="width: 100%; height: 100%; object-fit: cover;">
-								
-							</div>
+				@if(count($products)>0)		
+            @foreach($products as $product)			
+			@if($product->Status == 'Available' && $product->Quantity>0)
+							<div class="col-md-4 text-center">
+								<div class="product-entry">
+									<div class="product-img" style="background-image:url( {{asset($product->Productimage)}});">
+										<div class="cart">
+											<p>
+												
+												<span><a href="{{route('productdisplay.show',['id'=>$product->id])}}"><i class="icon-eye"></i></a></span> 
+												
+											</p>
+										</div>
+									</div>	
+       
 							<div class="desc">
-								<h3><a href="#">Product Name : {{$products->Productname}}</a></h3>
-								<p class="price"><span>${{$products->Price}}</span></p>
-								<a href="{{route('productdisplay.show',['id'=>$product->id])}}" class="btn btn-success text-white" role="button">Find More</a>
-							</div>
+								<h3><a href="{{route('productdisplay.show',['id'=>$product->id])}}">Product Name : {{$product->Productname}}</a></h3>
+								<p class="price"><span>${{$product->Price}}</span></p>
+								</div>
 						</div>
 					</div>
+					
 					@else
 						<p>No Product found</p>
 					@endif
+					
           @endforeach
         @else
             <p>No product found</p>
-        @endif
+       
+		@endif
 				</div>
+
 			</div>
 		</div>
 		<hr style="height:1px; border:none; color:#000; background-color:#000; width:60%; text-align:center; margin: 0 auto;">		
@@ -244,7 +262,7 @@
 						<p>
 							<ul class="colorlib-footer-links">
 								<li><a href="{{route('welcome')}}">Home</a></li>
-								<li><a href="{{route('category')}}">Product</a></li>
+								<li><a href="{{route('category.index')}}">Product</a></li>
 								<li><a href="{{route('companyinfo')}}">Company Info</a></li>
 								<li ><a href="{{route('help')}}"">Help</a></li>
                 @if (Auth::guest())

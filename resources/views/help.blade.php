@@ -74,7 +74,7 @@
 		<ul>
 			<li><a href="{{route('welcome')}}">Home</a></li>
 			<li>
-				<a href="{{route('category')}}">Product</a>									
+				<a href="{{route('category.index')}}">Product</a>									
 			</li>
 			<li><a href="{{route('companyinfo')}}"">Company Info</a></li>
 			<li class="active"><a href="{{route('help')}}"">Help</a></li>
@@ -169,7 +169,7 @@
 	<p>
 		<ul class="colorlib-footer-links">
 			<li><a href="{{route('welcome')}}">Home</a></li>
-			<li><a href="{{route('category')}}">Product</a></li>
+			<li><a href="{{route('category.index')}}">Product</a></li>
 			<li><a href="{{route('companyinfo')}}">Company Info</a></li>
 			<li ><a href="{{route('help')}}"">Help</a></li>
 			@if (Auth::guest())

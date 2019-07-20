@@ -1,6 +1,7 @@
 @extends('user.sidebaruser')
 
 @section('content')
+<div class="container-fluid">
 <div class="row">
 
             <!-- Earnings (Monthly) Card Example -->
@@ -74,6 +75,7 @@
                 </div>
               </div>
             </div>
+          </div>
           </div>
 
 <div class="alert alert-success text-center">

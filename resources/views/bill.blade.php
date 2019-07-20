@@ -6,7 +6,7 @@
     }
     #bill{
         margin-top:10%;
-        margin-right:30%;
+        margin-right:5%;
         visibility: visible;
     }
 </style>
@@ -16,69 +16,79 @@
 
 <a class="btn btn-outline-success offset-5" onclick="window.print();return false;" id="print"><i class="fa fa-print"></i>Print </a>
 <div id="bill">
-<div class="row">
-    <div class="col-md-8 offset-3">
-    <h1 class="text-center">Nepal Handicraft Online Market</h1>
-    <h1 class="text-center">Bill</h1>
-        <div class="row text-center">
-            <div class="col-md-6">
-                <label>Payment Way</label>
-            </div>
-            <div class="col-md-6">
-                <p>{{$transaction->Paymentway}}</p>
-            </div>
-        </div>
-        <div class="row text-center">
-            <div class="col-md-6">
-            <?php $product = App\Product::findorFail($transaction->Productid)?> 
-                <label>Product Name</label>
-            </div>
-            <div class="col-md-6">
-                <p>{{$product->Productname}}</p>
-            </div>
-        </div>
-        <div class="row text-center">
-            <div class="col-md-6">
-            <?php $user = App\User::findorFail($transaction->Userid)?> 
-                <label>Username</label>
-            </div>
-            <div class="col-md-6">
-                <p>{{$user->Username}}</p>
-            </div>
-        </div>
-        <div class="row text-center">
-            <div class="col-md-6">
-                <label>Price</label>
-            </div>
-            <div class="col-md-6">
-                <p>{{$product->Price}}</p>
-            </div>
-        </div>
-        <div class="row text-center">
-            <div class="col-md-6">
-                <label>Quantity</label>
-            </div>
-            <div class="col-md-6">
-                <p>{{$transaction->Quantity}}</p>
-            </div>
-        </div>
-        <div class="row text-center">
-            <div class="col-md-6">
-                <label>Total</label>
-            </div>
-            <div class="col-md-6">
-                <p>{{$transaction->Price}}</p>
-            </div>
-        </div>
-                         
-    </div>
-    </div>
-</div>
-</div>
-    <div class="row text-center">
-        <div class="col-md-3">
-        
 
-        </div>
-    </div>
+
+    <div class="container">
+     
+      <div class="row pad-top-botm ">
+         <div class="col-lg-3 col-md-4 col-sm-3 ">
+         <img src="{{ asset('assets/photos/download.jpg')}}" width="100" height="100" alt="logo" style="padding-bottom:20px;">
+         </div>
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            
+               <strong>  Nepal Handicraft Online Market</strong>
+         </div>
+     </div>
+     <div  class="row text-center contact-info">
+         <div class="col-lg-12 col-md-12 col-sm-12">
+             <hr />
+             <span>
+                 <strong>Email : </strong>  info@yourdomain.com 
+             </span>
+             <hr />
+         </div>
+     </div>
+     <div  class="row pad-top-botm client-info">
+         <div class="col-lg-6 col-md-6 col-sm-6">
+         <h4>  <strong>Client Information</strong></h4>
+           <strong> Client name: <?php $user = App\User::findorFail($transaction->Userid)?>{{$user->Username}} </strong>
+             
+         </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            
+               <h4>  <strong>Payment Details </strong></h4>
+            <b>Bill Amount :  {{$transaction->Price}} </b>
+              <br />
+               Bill Date :  {{$transaction->created_at}}
+              <br />
+               Delivery Location : {{$transaction->Location}}
+              <br />
+               Contact Information :  {{$transaction->Contact}}
+               <br />
+               Payment Way: {{$transaction->Paymentway}}
+         </div>
+     </div>
+     <div class="row">
+         <div class="col-lg-12 col-md-12 col-sm-12">
+           <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Perticulars</th>
+                                    <th>Quantity.</th>
+                                    <th>Unit Price</th>
+                                     <th>Sub Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <?php $product = App\Product::findorFail($transaction->Productid)?> 
+                                    <td>{{$product->Productname}}</td>
+                                    <td>{{$transaction->Quantity}}</td>
+                                    <td>{{$product->Price}}</td>
+                                    <td>{{$transaction->Price}}</td>
+                                </tr>                               
+                            </tbody>
+                        </table>
+               </div>
+             <hr />
+             <div class="ttl-amts">
+               <h5>  Total Amount : {{$transaction->Price}}</h5>
+             </div>
+         </div>
+     </div>
+      <div class="row">
+         </div>
+ </div>
+ </div>
 @endsection
